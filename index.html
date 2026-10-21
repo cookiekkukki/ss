@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="ko" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>해경성 – 바다는 거울, 가주는 뱀</title>
+<meta name="description" content="스토리챗 '해경성' 작품 소개, 세계관, 연중 행사 및 인물 도감">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;900&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          ocean: {
+            950: '#060d13',
+            900: '#0c1a22',
+            800: '#12262f',
+            700: '#1e3845',
+            600: '#24424f',
+          },
+          snake: {
+            DEFAULT: '#6cc7e8',
+            glow: '#92e1fc',
+            dark: '#2ba4b5',
+          },
+          thread: {
+            DEFAULT: '#2e98a8',
+            red: '#c83838',
+            accent: '#38bdf8',
+          },
+          gold: {
+            light: '#f3e5ab',
+            DEFAULT: '#d4af37',
+            dark: '#997a15',
+          }
+        },
+        fontFamily: {
+          serif: ['"Noto Serif KR"', '"Nanum Myeongjo"', 'serif'],
+          sans: ['"Noto Sans KR"', 'sans-serif'],
+          cinzel: ['"Cinzel"', 'serif'],
+        },
+        animation: {
+          'mirror-wave': 'mirrorWave 7s ease-in-out infinite',
+          'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        },
+        keyframes: {
+          mirrorWave: {
+            '0%, 100%': { transform: 'scaleY(-1) skewX(0deg) translateY(0)', opacity: '0.28' },
+            '50%': { transform: 'scaleY(-1) skewX(-2.5deg) translateY(-4px)', opacity: '0.45' },
+          }
+        }
+      }
+    }
+  }
+</script>
+
+<style type="text/tailwindcss">
+  @layer utilities {
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    /* Custom Scrollbar - Sharp */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #060d13;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #24424f;
+      border-radius: 0px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #6cc7e8;
+    }
+
+    /* Glass & Panel Effect - Strict Sharp Edges (0px radius) */
+    .glass-card {
+      background: rgba(18, 38, 47, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(36, 66, 79, 0.8);
+      border-radius: 0px !important;
+    }
+    .glass-card:hover {
+      border-color: rgba(108, 199, 232, 0.5);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+    }
+    .glass-nav {
+      background: rgba(12, 26, 34, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    
+    /* Oriental Borders */
+    .oriental-divider {
+      position: relative;
+    }
+    .oriental-divider::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(46, 152, 168, 0.4), transparent);
+    }
+  }
+</style>
+</head>
+
+<body class="bg-ocean-950 text-slate-100 font-sans antialiased selection:bg-snake selection:text-ocean-950 overflow-x-hidden">
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-50 w-full glass-nav border-b border-ocean-600/60 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="#top" class="group flex items-center gap-2.5 text-xl font-serif font-black tracking-widest text-slate-100 hover:text-snake transition-colors">
+        <span class="inline-block text-snake group-hover:rotate-45 transition-transform duration-300">◆</span>
+        <span>海鏡城</span>
+        <span class="text-xs font-sans font-normal text-slate-400 group-hover:text-snake/80 hidden sm:inline ml-1">해경성</span>
+      </a>
+
+      <nav aria-label="메인 메뉴" class="flex items-center gap-1 sm:gap-6 text-sm font-medium">
+        <a href="#world" class="nav-link px-2.5 py-1.5 text-slate-300 hover:text-snake transition-all">세계관</a>
+        <a href="#places" class="nav-link px-2.5 py-1.5 text-slate-300 hover:text-snake transition-all">장소</a>
+        <a href="#festival" class="nav-link px-2.5 py-1.5 text-slate-300 hover:text-snake transition-all">행사</a>
+        <a href="#cast" class="nav-link px-3 py-1.5 text-snake border border-snake/40 bg-snake/10 hover:bg-snake/20 transition-all">인물 도감</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[85vh] flex flex-col justify-center items-center text-center px-4 py-20 overflow-hidden">
+      <!-- Background Image Container -->
+      <div id="heroBg" class="absolute inset-0 z-0 bg-gradient-to-b from-ocean-950 via-ocean-900 to-ocean-950 bg-cover bg-center opacity-80 transition-opacity duration-1000"></div>
+      
+      <!-- Water Reflection Overlay FX -->
+      <div class="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-snake/10 via-transparent to-transparent pointer-events-none"></div>
+      
+      <!-- Horizon Line -->
+      <div class="absolute top-[52%] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-thread to-transparent opacity-60 z-0"></div>
+
+      <!-- Hero Content -->
+      <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+
+        <!-- Tagline Lead -->
+        <p class="mb-4 text-base sm:text-2xl font-serif font-medium text-slate-200 max-w-2xl leading-relaxed drop-shadow">
+          "가주는 뱀이 되어있고, 나는.... 네? <span class="text-snake font-semibold underline decoration-thread/60 underline-offset-4">뱀의 부인</span>이라고요?"
+        </p>
+
+        <!-- Main Title with Mirror Ripple Effect -->
+        <div class="relative select-none my-2">
+          <h1 class="text-6xl sm:text-8xl md:text-9xl font-serif font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-slate-100 via-slate-200 to-slate-400 drop-shadow-md">
+            해경성
+          </h1>
+          <!-- Mirror Reflection Effect -->
+          <div aria-hidden="true" class="text-6xl sm:text-8xl md:text-9xl font-serif font-black tracking-tight text-snake/30 animate-mirror-wave origin-bottom select-none pointer-events-none -mt-3 sm:-mt-6">
+            해경성
+          </div>
+        </div>
+
+        <!-- Dynamic Action Buttons -->
+        <div class="mt-12 flex flex-wrap gap-4 justify-center items-center">
+          <a href="#festival" class="nav-link group px-7 py-3.5 bg-thread hover:bg-snake text-ocean-950 font-bold text-base transition-all duration-300 flex items-center gap-2 border border-thread">
+            <span>연중 행사 보기</span>
+            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+          <a href="#cast" class="nav-link px-7 py-3.5 border border-ocean-600 bg-ocean-900/80 hover:border-snake text-slate-200 hover:text-white font-medium text-base transition-all">
+            인물 도감 탐색
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <a href="#world" class="nav-link absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs text-slate-400 hover:text-snake transition-colors">
+        <span class="tracking-widest uppercase text-[10px]">Scroll</span>
+        <svg class="w-4 h-4 animate-bounce text-snake" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+      </a>
+    </section>
+
+    <!-- World Section -->
+    <section id="world" class="max-w-5xl mx-auto px-4 sm:px-6 pt-24 pb-16 oriental-divider">
+      <div class="mb-10">
+        <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-1">World & Lore</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-black text-slate-100">단국, 그리고 물어른의 바다</h2>
+        <p class="mt-2 text-slate-400 text-sm sm:text-base leading-relaxed">
+          북쪽 내륙에는 수도 적경과 왕실이 위치하며, 동남쪽 긴 해안선의 바다 방어는 단씨 가문이 전담한다.
+        </p>
+      </div>
+
+      <!-- Facts Grid -->
+      <dl class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="facts"></dl>
+
+      <!-- Incident Teaser -->
+      <aside class="mt-8 p-6 sm:p-8 border border-ocean-600 bg-ocean-800/40 border-l-4 border-l-thread">
+        <div class="flex items-start gap-4">
+          <div class="text-snake shrink-0 pt-0.5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-serif font-bold text-slate-100 mb-1.5">1년 전, 봉고(封庫)에서 일어난 금기의 사건</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              금기물이 깨진 뒤 가주 <strong class="text-snake font-semibold">단휘</strong>는 사람의 모습을 잃고 파란 반투명 뱀의 형태가 되었다. 신수는 그를 살려 두었지만, 원상태로 되돌릴 방법은 아직 베일에 싸여 있다.
+            </p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Places Section -->
+    <section id="places" class="max-w-5xl mx-auto px-4 sm:px-6 py-20 oriental-divider">
+      <div class="mb-10">
+        <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-1">Locations</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-black text-slate-100">해경성 안팎의 주요 장소</h2>
+        <p class="mt-2 text-slate-400 text-sm">신수의 숨결이 닿는 해경성의 공간 안내</p>
+      </div>
+
+      <div class="divide-y divide-ocean-700/80 border-t border-b border-ocean-700/80" id="places-list"></div>
+    </section>
+
+    <!-- Festivals Section -->
+    <section id="festival" class="max-w-5xl mx-auto px-4 sm:px-6 py-20 oriental-divider">
+      <div class="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-1">Annual Festivals</span>
+          <h2 class="text-3xl sm:text-4xl font-serif font-black text-slate-100">연중 행사</h2>
+          <p class="mt-2 text-slate-400 text-sm">해경성을 지키는 신수와 바다, 액막이를 위해 치러지는 의식과 축제</p>
+        </div>
+        <div class="text-xs text-thread flex items-center gap-2 border border-thread/30 bg-thread/10 px-3 py-1.5 self-start sm:self-auto">
+          <span class="w-2 h-2 rounded-full bg-thread animate-pulse"></span>
+          <span>절기 및 양력 기준 정례 행사</span>
+        </div>
+      </div>
+
+      <!-- Detailed Timeline / Card List for Festivals -->
+      <div class="space-y-6" id="fest-list"></div>
+    </section>
+
+    <!-- Character Cast Section -->
+    <section id="cast" class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold text-gold uppercase tracking-widest block mb-1">Dramatis Personae</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-black text-slate-100">인물 도감</h2>
+        <p class="mt-2 text-slate-400 text-sm">카드를 누르면 숨겨진 성격과 관계가 펼쳐집니다.</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="flex justify-center flex-wrap gap-2 mb-10" role="tablist" id="tabs"></div>
+
+      <!-- Character Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="grid"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-ocean-700 bg-ocean-950 py-12 text-center text-slate-500 text-sm">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col items-center gap-3">
+      <div class="flex items-center gap-2 text-slate-300 font-serif font-bold text-base tracking-wider">
+        <span class="text-snake">◆</span> 海鏡城 : 바다는 거울, 가주는 뱀
+      </div>
+      <p class="text-xs text-slate-400 max-w-md">
+        이미지는 선택 요소입니다. 없어도 이야기는 글로써 이어집니다.
+      </p>
+      <p class="text-xs text-slate-600 mt-2">
+        &copy; 2026 해경성 All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Javascript Logic -->
+  <script>
+    const REV = "20261021-5";
+    
+    const meta = {
+      facts: [
+        ["지리", "북쪽 내륙 수도 적경과 왕실, 동남쪽 긴 해안선, 최남단 만(灣)이 해경성."],
+        ["가문 체제", "단씨 가문이 바다 방어를 전담한다. 신수가 방벽이라 왕실도 함부로 건드리지 못한다."],
+        ["신수 (神獸)", "성을 휘감은 정체불명의 심해 거대용. 성하 주민은 '물어른'이라 부른다."],
+        ["마력", "지맥과 해기에서 나온다. 일반인은 부적과 간단한 술법까지만 쓴다."],
+        ["생활 양식", "소금·전복·진주가 특산. 흰 한복풍 의복, 대문 고리엔 붉은 명주실을 엮어 둔다."],
+        ["풍습", "바다 악귀를 속이려 아이에게 귀걸이를 채우거나 여장을 시킨다."]
+      ],
+      places: [
+        ["외성", "항구 · 시장 · 어촌", "성하 주민이 사는 곳. 물어른에 대한 경외와 친근함이 함께 존재한다."],
+        ["내성", "단씨 본거지", "대전, 후원, 각자의 처소와 외빈을 위한 객사가 위치한다."],
+        ["봉고 (封庫)", "금기물 창고", "철저한 출입 금지 구역. 1년 전 의문의 사건이 벌어진 현장이다."],
+        ["해문 (海門)", "바다 쪽 성문", "신수가 전모를 드러내는 장소. 파도가 높으면 밤 출입이 엄격히 금지된다."],
+        ["경루 (鏡樓)", "만을 내려다보는 망루", "신수 관측소이자 밤낮으로 은밀한 이야기가 오가는 비밀 장소."]
+      ],
+      festivals: [
+        {
+          id: "hwj",
+          name: "해원제 (海元祭)",
+          date: "양력 1월 1일 (새해 첫날)",
+          badge: "신년 정례 의식",
+          summary: "새해 첫날, 해경성의 첫 일출에 맞춰 가문의 번영과 한 해의 안녕을 기원하는 의식.",
+          bullets: [
+            "내성 궁인들과 백성들이 사랑하는 이들(가족, 연인, 부부 등)에게 액을 막아주는 <strong class='text-thread-red font-semibold'>붉은 명주실 복주머니</strong>를 주고받음.",
+            "복주머니에는 상대방을 생각해 좋아하는 물건이나 떠오르는 물건을 담는 것이 풍습.",
+            "가주는 성하 주민들에게 첫 인사를 올리고 신수에게 신년 고유제(告由祭)를 올림."
+          ]
+        },
+        {
+          id: "brj",
+          name: "봉령제 (封靈祭)",
+          date: "양력 1월 15일 (한겨울 무렵)",
+          badge: "결계 방어 의식",
+          summary: "거친 풍랑이 몰아치는 늦겨울, 바다 악귀와 차가운 해기의 침범을 막는 엄숙한 방어 의식.",
+          bullets: [
+            "바다쪽 성문인 <strong class='text-snake font-semibold'>해문(海門)</strong>을 거대한 쇠사슬로 완벽히 봉쇄함.",
+            "대부인의 엄격한 지휘 아래 대문 문고리의 붉은 명주실과 액막이 부적을 새것으로 교체.",
+            "봉고(封庫)의 결계를 재정비하며 차가운 해기에 대비하는 시기."
+          ]
+        },
+        {
+          id: "hkj",
+          name: "해경제 (海鏡祭)",
+          date: "양력 4월 5일 ~ 10일 (봄 초입 / 청명)",
+          badge: "봄 민중 축제",
+          summary: "봄철 상반기 풍랑 없는 평온을 기원하는 화려하고 활기찬 성하 민중 축제.",
+          bullets: [
+            "풍성한 해산물 잔치와 함께 소금·진주 저자(시장)가 크게 열림.",
+            "성하 마을 곳곳에서 '물어름 민담 극'이 펼쳐짐.",
+            "신수의 심기가 잔잔해 수면 아래 푸른 그림자가 아른거려도 백성들은 두려움 없이 축복으로 여김."
+          ]
+        },
+        {
+          id: "mjj",
+          name: "만조제 (滿潮祭)",
+          date: "양력 9월 28일 (가을 백중 · 대조기)",
+          badge: "최고 권위 정식 대제",
+          summary: "해경성 최고 권위의 정식 대제. 신수와의 계약을 재확인하고 결계를 강화함.",
+          bullets: [
+            "가주는 흰 제복을 입고 손목에 <strong class='text-thread-red font-semibold'>붉은 명주실</strong>을 감은 채 해문 앞 제단에서 최상급 해산물과 진주를 제물로 바침.",
+            "만조의 밤에는 심해의 신수가 성벽 턱밑까지 접근하여 성 전체에 차가운 안개와 해기가 감돔.",
+            "마력이 불안정할 경우 지맥이 흔들려 주민들이 정신 오염을 일으킬 위험이 존재하는 엄숙한 밤."
+          ]
+        },
+        {
+          id: "drj",
+          name: "등롱제 (燈籠祭)",
+          date: "양력 10월 27일 (늦가을 무렵)",
+          badge: "추모 & 소원 축제",
+          summary: "가을철 바다에 희생된 이들의 넋을 기리고 소원을 비는 추모제.",
+          bullets: [
+            "항구와 시장의 불을 끄고 붉은 실과 한지로 만든 수천 개의 등롱을 잔잔한 수면 위로 띄움.",
+            "바다 악귀를 속이고 아이를 지키기 위해 귀걸이를 채우거나 여장을 시키는 풍습 존재.",
+            "수천 개 붉은 등롱 빛이 바다에 반사되어 성 전체가 거울처럼 붉게 물듦."
+          ]
+        }
+      ]
+    };
+
+    const groups = { all: "전체 보기", clan: "단씨 가문", guest: "외부 손님" };
+
+    const characters = [
+      { 
+        id: "01", 
+        name: "단휘", 
+        hanja: "段輝", 
+        group: "clan", 
+        type: "26세 · 해경성의 가주", 
+        role: "호쾌하고 능청스러운 결단형 가주",
+        quote: "고민은 길수록 손해야. 일단 움직이고 생각하자고.",
+        detail: ["성격", "시원시원하고 쾌활하다. 겉으로는 가볍게 굴어도 자기 사람에겐 은근히 깊은 다정함을 품고 있다."],
+        rel: "현재는 파란 반투명 뱀의 모습이다. 식탐과 호기심이 많고 따뜻하고 습한 곳을 찾아다닌다." 
+      },
+      { 
+        id: "02", 
+        name: "서리아", 
+        hanja: "徐利娥", 
+        group: "guest", 
+        type: "22세 · 명문가 영애", 
+        role: "단휘의 정략 후궁 후보",
+        quote: "예의는 지키겠어요. 다만 제 자리까지 쉽게 내줄 생각은 없답니다.",
+        detail: ["성격", "철저하고 냉철하다. 화가 날수록 목소리는 오히려 차분해지고 말은 느려진다."],
+        rel: "단휘와는 어릴 적부터 아는 사이다. 갑자기 낯선 곳에서 나타난 이방인을 경계하고 주시한다." 
+      },
+      { 
+        id: "03", 
+        name: "대부인", 
+        hanja: "大夫人", 
+        group: "clan", 
+        type: "43세 · 단씨 가문의 안주인", 
+        role: "엄격한 원칙주의자",
+        quote: "쯧. 모름지기 가문의 체면부터 챙겨야 하는 법입니다.",
+        detail: ["성격", "질서와 체면을 최우선으로 여기며 훈계가 잦다. 그러나 그 이면엔 아들과 가문에 대한 깊은 애정이 있다."],
+        rel: "못마땅하면 부채를 탁 소리나게 접는다. 이방인을 경계하면서도 사태를 수습해 주길 내심 기대한다." 
+      },
+      { 
+        id: "04", 
+        name: "위서진", 
+        hanja: "魏瑞辰", 
+        group: "guest", 
+        type: "29세 · 단휘의 오랜 친구", 
+        role: "능글맞은 소꿉친구",
+        quote: "급할 게 뭐 있습니까. 구경하는 게 제일 재밌는 법인데.",
+        detail: ["성격", "장난기 많고 늘 유쾌하여 느긋해 보인다. 그러나 가벼운 태도 뒤에 鋭利한 집요함이 숨어 있다."],
+        rel: "단휘와는 오랜 기간 티격태격해 온 관계다. 뜬금없이 등장한 이방인에게 큰 흥미를 보이며 접근한다." 
+      }
+    ];
+
+    const $ = s => document.querySelector(s);
+    const el = (t, c, h) => { 
+      const e = document.createElement(t); 
+      if (c) e.className = c; 
+      if (h) e.innerHTML = h; 
+      return e; 
+    };
+
+    // Smooth Scrolling Event Handling for Navigation
+    document.querySelectorAll('.nav-link').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#top') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // World Facts Render
+    $("#facts").append(...meta.facts.map(([k, v]) => el("div", 
+      "p-5 bg-ocean-900 border border-ocean-600 flex flex-col justify-start hover:border-snake/60 transition-colors", 
+      `<dt class="text-xs font-bold text-snake tracking-widest uppercase mb-2 flex items-center gap-1.5"><span class="inline-block w-1.5 h-1.5 bg-thread"></span>${k}</dt><dd class="text-slate-300 text-sm leading-relaxed">${v}</dd>`
+    )));
+
+    // Places Render
+    $("#places-list").append(...meta.places.map(([n, s, d]) => el("div", 
+      "py-6 flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-8 hover:bg-ocean-900/30 px-3 transition-colors", 
+      `<div class="md:w-1/3 flex items-baseline justify-between md:justify-start gap-4">
+         <h3 class="text-xl font-serif font-bold text-slate-100">${n}</h3>
+         <small class="text-xs font-medium text-thread tracking-wider uppercase">${s}</small>
+       </div>
+       <p class="text-slate-400 text-sm leading-relaxed md:w-2/3">${d}</p>`
+    )));
+
+    // Festival Cards Render
+    $("#fest-list").append(...meta.festivals.map(f => {
+      const bulletsHtml = f.bullets.map(b => `<li class="flex items-start gap-2"><span class="text-snake shrink-0 select-none">▪</span><span>${b}</span></li>`).join('');
+      return el("div", "glass-card p-6 border border-ocean-600 bg-ocean-900/60 transition-all hover:border-snake/50", `
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-ocean-700/80 pb-4 mb-4">
+          <div class="flex items-center gap-3">
+            <h3 class="text-2xl font-serif font-black text-slate-100">${f.name}</h3>
+            <span class="text-xs font-semibold text-ocean-950 bg-snake px-2.5 py-0.5">${f.badge}</span>
+          </div>
+          <div class="text-sm font-medium text-gold flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-gold/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            <span>${f.date}</span>
+          </div>
+        </div>
+        <p class="text-slate-200 text-sm font-medium mb-4 leading-relaxed">${f.summary}</p>
+        <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
+          ${bulletsHtml}
+        </ul>
+      `);
+    }));
+
+    // Hero Banner Image Handling
+    const bn = new Image();
+    bn.onload = () => { 
+      const b = $("#heroBg"); 
+      b.style.backgroundImage = `linear-gradient(to bottom, rgba(6,13,19,0.7), rgba(6,13,19,0.95)), url(banner.webp?v=${REV})`; 
+      b.classList.add("opacity-100");
+    };
+    bn.src = `banner.webp?v=${REV}`;
+
+    // Character Card Builder
+    function createCard(c) {
+      const cardBtn = el("button", "glass-card overflow-hidden text-left transition-all duration-300 hover:-translate-y-1 focus:outline-none flex flex-col group w-full border border-ocean-600");
+      cardBtn.setAttribute("aria-expanded", "false");
+
+      const ph = el("div", "aspect-[3/4] w-full bg-gradient-to-br from-ocean-800 to-ocean-950 flex flex-col items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-500");
+      
+      const hanjaSymbol = el("span", "font-serif text-7xl font-black text-ocean-700/50 select-none group-hover:text-snake/20 transition-colors duration-500", c.hanja[0] || c.name[0]);
+      ph.append(hanjaSymbol);
+
+      const img = new Image();
+      img.loading = "lazy"; 
+      img.alt = c.name;
+      img.className = "absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500";
+      img.onload = () => { 
+        img.classList.remove("opacity-0");
+        img.classList.add("opacity-100");
+      };
+      img.src = `${c.id}/a01.webp?v=${REV}`;
+      ph.append(img);
+
+      const shadowOverlay = el("div", "absolute inset-0 bg-gradient-to-t from-ocean-950 via-transparent to-transparent opacity-80");
+      ph.append(shadowOverlay);
+
+      const body = el("div", "p-5 flex-1 flex flex-col justify-between w-full relative z-10", `
+        <div>
+          <div class="flex items-baseline justify-between gap-2 mb-1">
+            <h3 class="font-serif font-black text-2xl text-slate-100 group-hover:text-snake transition-colors">${c.name}</h3>
+            <span class="text-xs font-serif text-gold">${c.hanja}</span>
+          </div>
+          <div class="text-xs text-snake font-medium mb-1">${c.type}</div>
+          <div class="text-xs text-slate-400 mb-3">${c.role}</div>
+          
+          <blockquote class="text-xs font-serif italic text-slate-300 pl-3 border-l-2 border-thread bg-thread/5 py-1.5 pr-2">
+            "${c.quote}"
+          </blockquote>
+        </div>
+
+        <div class="more-content hidden mt-4 pt-3 border-t border-ocean-700/80 text-xs text-slate-300 space-y-2">
+          <div>
+            <strong class="text-snake font-semibold block mb-0.5">${c.detail[0]}</strong>
+            <p class="text-slate-300 leading-relaxed">${c.detail[1]}</p>
+          </div>
+          <div class="pt-1">
+            <strong class="text-gold font-semibold block mb-0.5">관계 및 특징</strong>
+            <p class="text-slate-300 leading-relaxed">${c.rel}</p>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-2 flex items-center justify-between text-[11px] text-slate-400 font-medium border-t border-ocean-800">
+          <span class="toggle-text group-hover:text-slate-200">상세보기</span>
+          <svg class="chevron-icon w-4 h-4 text-snake transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+      `);
+
+      cardBtn.append(ph, body);
+
+      cardBtn.onclick = () => {
+        const isExpanded = cardBtn.getAttribute("aria-expanded") === "true";
+        cardBtn.setAttribute("aria-expanded", !isExpanded);
+        
+        const moreDiv = cardBtn.querySelector(".more-content");
+        const chevron = cardBtn.querySelector(".chevron-icon");
+        const toggleText = cardBtn.querySelector(".toggle-text");
+
+        if (isExpanded) {
+          moreDiv.classList.add("hidden");
+          chevron.classList.remove("rotate-180");
+          toggleText.textContent = "상세보기";
+        } else {
+          moreDiv.classList.remove("hidden");
+          chevron.classList.add("rotate-180");
+          toggleText.textContent = "접기";
+        }
+      };
+
+      return cardBtn;
+    }
+
+    // Filter & Render Characters
+    function renderCharacters(groupKey) {
+      const grid = $("#grid");
+      grid.replaceChildren(...characters
+        .filter(c => groupKey === "all" || c.group === groupKey)
+        .map(createCard)
+      );
+
+      document.querySelectorAll(".tab-btn").forEach(tab => {
+        const selected = tab.dataset.g === groupKey;
+        tab.setAttribute("aria-selected", selected);
+        if (selected) {
+          tab.className = "tab-btn px-6 py-2 text-sm font-semibold text-ocean-950 bg-snake border border-snake transition-all cursor-pointer";
+        } else {
+          tab.className = "tab-btn px-6 py-2 text-sm font-medium text-slate-400 hover:text-slate-200 bg-ocean-900 border border-ocean-700 hover:border-snake/50 transition-all cursor-pointer";
+        }
+      });
+    }
+
+    // Append Filter Tabs
+    $("#tabs").append(...Object.entries(groups).map(([k, v]) => {
+      const btn = el("button", "tab-btn", v);
+      btn.dataset.g = k;
+      btn.setAttribute("role", "tab");
+      btn.onclick = () => renderCharacters(k);
+      return btn;
+    }));
+
+    // Initial Filter Render
+    renderCharacters("all");
+  </script>
+</body>
+</html>
