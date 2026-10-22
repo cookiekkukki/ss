@@ -287,6 +287,7 @@
   <!-- Javascript Logic -->
   <script>
     const REV = "20261021-15";
+    const IMAGE_BASE_URL = "https://pub-9c291a0e204a47028e7e6340aa4fee52.r2.dev";
     
     // Multi-Layer Dynamic Ocean Wave Canvas Animation
     const canvas = document.getElementById('waveCanvas');
@@ -346,7 +347,6 @@
         ["생활 양식", "소금·전복·진주가 특산. 흰 한복풍 의복, 대문 고리엔 붉은 명주실을 엮어 둔다."],
         ["풍습", "바다 악귀를 속이려 아이에게 귀걸이를 채우거나 여장을 시킨다."]
       ],
-      // 주요 장소 한자: 작고(text-xs) 살짝 두껍게(font-semibold) 노란색(text-gold) 적용
       places: [
         ["외성", "外城", "항구 · 시장 · 어촌", "성하 주민이 사는 곳. 물어른에 대한 경외와 친근함이 함께 존재한다."],
         ["내성", "內城", "단씨 본거지", "대전, 후원, 각자의 처소와 외빈을 위한 객사가 위치한다."],
@@ -416,10 +416,12 @@
       ]
     };
 
-    // 캐릭터 데이터
+    // 캐릭터 데이터 (R2 CDN 매핑 정보 적용)
+    // 1: 서리아, 2: 대부인(단예원), 3: 임서진(위서진), 4: 단휘
     const characters = [
       { 
         id: "01", 
+        imgKey: "4",
         name: "단휘", 
         hanja: "段輝", 
         type: "♂ · 26세 · 180cm · ESTP 8w7", 
@@ -430,6 +432,7 @@
       },
       { 
         id: "02", 
+        imgKey: "1",
         name: "서리아", 
         hanja: "徐利娥", 
         type: "♀ · 22세 · 161cm · ENTJ 3w4", 
@@ -440,6 +443,7 @@
       },
       { 
         id: "03", 
+        imgKey: "2",
         name: "단예원", 
         hanja: "段叡媛", 
         type: "♀ · 43세 · 158cm · ESTJ 1w2", 
@@ -450,6 +454,7 @@
       },
       { 
         id: "04", 
+        imgKey: "3",
         name: "위서진", 
         hanja: "魏瑞辰", 
         type: "♂ · 29세 · 182cm · ENTP 7w6", 
@@ -490,7 +495,7 @@
       `<dt class="text-xs font-bold text-snake tracking-widest uppercase mb-2 flex items-center gap-1.5"><span class="inline-block w-1.5 h-1.5 bg-snake"></span>${k}</dt><dd class="text-slate-300 text-sm leading-relaxed">${v}</dd>`
     )));
 
-    // Places Render (장소 한자: 작고 살짝 두꺼운 노란색 글씨로 렌더링)
+    // Places Render
     $("#places-list").append(...meta.places.map(([n, h, s, d]) => {
       const hanjaSpan = h ? `<span class="text-xs font-semibold text-gold ml-1.5">${h}</span>` : '';
       return el("div", 
@@ -550,15 +555,18 @@
       const portraitImg = new Image();
       portraitImg.loading = "lazy";
       portraitImg.alt = c.name;
-      portraitImg.className = "absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500";
+      portraitImg.className = "absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 z-10";
       portraitImg.onload = () => {
         portraitImg.classList.remove("opacity-0");
         portraitImg.classList.add("opacity-100");
       };
-      portraitImg.src = `${c.id}/a01.webp?v=${REV}`;
+      portraitImg.onerror = () => {
+        portraitImg.style.display = "none";
+      };
+      portraitImg.src = `${IMAGE_BASE_URL}/${c.imgKey}.webp`;
       imgContainer.append(portraitImg);
 
-      const overlay = el("div", "absolute inset-0 bg-gradient-to-t from-ocean-950/80 via-transparent to-transparent opacity-60");
+      const overlay = el("div", "absolute inset-0 bg-gradient-to-t from-ocean-950/80 via-transparent to-transparent opacity-60 z-20 pointer-events-none");
       imgContainer.append(overlay);
 
       const traitListHtml = c.traits.map(t => `<li class="flex items-start gap-2 leading-relaxed"><span class="text-snake select-none shrink-0">▫</span><span>${t}</span></li>`).join('');
