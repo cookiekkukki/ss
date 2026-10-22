@@ -193,7 +193,8 @@
 
       <dl class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="facts"></dl>
 
-      <aside class="mt-8 p-6 sm:p-8 border border-snake/25 bg-ocean-900/40 backdrop-blur-md border-l-4 border-l-snake">
+      <!-- 수정된 봉고 사건 박스 내용 -->
+      <aside class="mt-8 p-6 sm:p-8 border border-snake/25 bg-ocean-900/40 backdrop-blur-md border-l-0">
         <div class="flex items-start gap-4">
           <div class="text-snake shrink-0 pt-0.5">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
@@ -201,7 +202,7 @@
           <div>
             <h3 class="text-lg font-serif font-bold text-slate-100 mb-1.5">1년 전, 봉고(封庫)에서 일어난 금기의 사건</h3>
             <p class="text-slate-300 text-sm leading-relaxed">
-              금기물이 깨진 뒤 가주 <strong class="text-snake font-semibold">단휘</strong>는 사람의 모습을 잃고 파란 반투명 뱀의 형태가 되었다. 신수는 그를 살려 두었지만, 원상태로 되돌릴 방법은 아직 베일에 싸여 있다.
+             가주 승계전 날. 궁인의 실수로 금기의 물건이 깨지며 저주가 폭주했고, 단휘는 그 저주를 홀로 받아내게 되면서 죽을 위기에 처했다. 신수는 그를 살리려 작은 미물의 몸에 단휘의 목숨을 이어 붙였지만, 그 대가로 그는 서서히 이무기가 되어가고 있는 상황.
             </p>
           </div>
         </div>
@@ -345,12 +346,13 @@
         ["생활 양식", "소금·전복·진주가 특산. 흰 한복풍 의복, 대문 고리엔 붉은 명주실을 엮어 둔다."],
         ["풍습", "바다 악귀를 속이려 아이에게 귀걸이를 채우거나 여장을 시킨다."]
       ],
+      // 주요 장소 한자: 작고(text-xs) 살짝 두껍게(font-semibold) 노란색(text-gold) 적용
       places: [
-        ["외성", "항구 · 시장 · 어촌", "성하 주민이 사는 곳. 물어른에 대한 경외와 친근함이 함께 존재한다."],
-        ["내성", "단씨 본거지", "대전, 후원, 각자의 처소와 외빈을 위한 객사가 위치한다."],
-        ["봉고 (封庫)", "금기물 창고", "철저한 출입 금지 구역. 1년 전 의문의 사건이 벌어진 현장이다."],
-        ["해문 (海門)", "바다 쪽 성문", "신수가 전모를 드러내는 장소. 파도가 높으면 밤 출입이 엄격히 금지된다."],
-        ["경루 (鏡樓)", "만을 내려다보는 망루", "신수 관측소이자 밤낮으로 은밀한 이야기가 오가는 비밀 장소."]
+        ["외성", "外城", "항구 · 시장 · 어촌", "성하 주민이 사는 곳. 물어른에 대한 경외와 친근함이 함께 존재한다."],
+        ["내성", "內城", "단씨 본거지", "대전, 후원, 각자의 처소와 외빈을 위한 객사가 위치한다."],
+        ["봉고", "封庫", "금기물 창고", "철저한 출입 금지 구역. 1년 전 의문의 사건이 벌어진 현장이다."],
+        ["해문", "海門", "바다 쪽 성문", "신수가 전모를 드러내는 장소. 파도가 높으면 밤 출입이 엄격히 금지된다."],
+        ["경루", "鏡樓", "만을 내려다보는 망루", "신수 관측소이자 밤낮으로 은밀한 이야기가 오가는 비밀 장소."]
       ],
       festivals: [
         {
@@ -414,13 +416,13 @@
       ]
     };
 
-    // 요청하신 양식에 맞춰 수정한 캐릭터 데이터
+    // 캐릭터 데이터
     const characters = [
       { 
         id: "01", 
         name: "단휘", 
         hanja: "段輝", 
-        type: "♂ · 26세 · ESTP 8w7", 
+        type: "♂ · 26세 · 180cm · ESTP 8w7", 
         role: "결단의 리더...였으나, 저주로 뱀으로 변함",
         traits: [
           "<strong>[본능]</strong> 식탐과 호기심이 강하며 온기와 습한 곳을 본능적으로 추구한다."
@@ -430,7 +432,7 @@
         id: "02", 
         name: "서리아", 
         hanja: "徐利娥", 
-        type: "♀ · 22세 · ENTJ 3w4", 
+        type: "♀ · 22세 · 161cm · ENTJ 3w4", 
         role: "명문가 영애 · 단휘의 정략 후궁 후보",
         traits: [
           "철저하고 냉철하며 자존심이 강하고 날 선 견제를 서슴지 않는다."
@@ -438,9 +440,9 @@
       },
       { 
         id: "03", 
-        name: "대부인", 
-        hanja: "大夫人", 
-        type: "♀ · 43세 · ESTJ 1w2", 
+        name: "단예원", 
+        hanja: "段叡媛", 
+        type: "♀ · 43세 · 158cm · ESTJ 1w2", 
         role: "단씨가 안주인 · 단휘의 어머니이자 집안의 최고 어른",
         traits: [
           "원칙주의와 질서, 체면을 최우선으로 여긴다. 엄격한 잔소리꾼이자 완고한 성격이지만 그 이면에는 아들과 가문 전체에 대한 깊은 속정과 애정이 숨어 있다."
@@ -450,7 +452,7 @@
         id: "04", 
         name: "위서진", 
         hanja: "魏瑞辰", 
-        type: "♂ · 29세 · ENTP 7w6", 
+        type: "♂ · 29세 · 182cm · ENTP 7w6", 
         role: "위가(魏家) 가주 · 단휘의 오랜 친구",
         traits: [
           "능글맞고 장난기가 많으며 언제나 호기심이 많으며 급할 것 없는 태도를 보이나 예리하고 집요한 면도 가지고 있다."
@@ -488,15 +490,18 @@
       `<dt class="text-xs font-bold text-snake tracking-widest uppercase mb-2 flex items-center gap-1.5"><span class="inline-block w-1.5 h-1.5 bg-snake"></span>${k}</dt><dd class="text-slate-300 text-sm leading-relaxed">${v}</dd>`
     )));
 
-    // Places Render
-    $("#places-list").append(...meta.places.map(([n, s, d]) => el("div", 
-      "py-6 flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-8 hover:bg-ocean-900/20 px-3 transition-colors", 
-      `<div class="md:w-1/3 flex items-baseline justify-between md:justify-start gap-4">
-         <h3 class="text-xl font-serif font-bold text-slate-100">${n}</h3>
-         <small class="text-xs font-medium text-snake tracking-wider uppercase">${s}</small>
-       </div>
-       <p class="text-slate-400 text-sm leading-relaxed md:w-2/3">${d}</p>`
-    )));
+    // Places Render (장소 한자: 작고 살짝 두꺼운 노란색 글씨로 렌더링)
+    $("#places-list").append(...meta.places.map(([n, h, s, d]) => {
+      const hanjaSpan = h ? `<span class="text-xs font-semibold text-gold ml-1.5">${h}</span>` : '';
+      return el("div", 
+        "py-6 flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-8 hover:bg-ocean-900/20 px-3 transition-colors", 
+        `<div class="md:w-1/3 flex items-baseline justify-between md:justify-start gap-4">
+           <h3 class="text-xl font-serif font-bold text-slate-100 flex items-baseline"><span>${n}</span>${hanjaSpan}</h3>
+           <small class="text-xs font-medium text-snake tracking-wider uppercase">${s}</small>
+         </div>
+         <p class="text-slate-400 text-sm leading-relaxed md:w-2/3">${d}</p>`
+      );
+    }));
 
     // Festival Cards Render
     $("#fest-list").append(...meta.festivals.map(f => {
